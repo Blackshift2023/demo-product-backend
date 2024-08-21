@@ -11,8 +11,8 @@ async function bootstrap() {
   app.setGlobalPrefix(process.env.GLOBAL_PREFIX);
 
   const config = new DocumentBuilder()
-    .setTitle('Groww Business')
-    .setDescription('Empowering entrepreneurs with customizable e-commerce.')
+    .setTitle('demo')
+    .setDescription('demo')
     .setVersion('1.0')
     .addBearerAuth()
     .build();

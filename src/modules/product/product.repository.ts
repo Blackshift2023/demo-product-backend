@@ -17,7 +17,12 @@ export class ProductRepository extends Repository<Product> {
     async careteProduct(product: CreateProductDto): Promise<Product> {
         const create: Product = this.create({
             name: product.name,
-            description: product.description
+            description: product.description,
+            price: product.price,
+            category: product.category,
+            brand: product.brand,
+            discount_percentage: product.discount_percentage ?? 0, // Default to 0 if not provided
+            rating: product.rating ?? 0 // De
         });
         const save: Product = await this.save(create);
         return save;
@@ -48,9 +53,8 @@ export class ProductRepository extends Repository<Product> {
         };
 
         const qb: SelectQueryBuilder<Product> = this.createQueryBuilder('product');
-        qb.orderBy('product.updatedDate', sort || SortEnum.ASC);
+        qb.orderBy('product.updated_at', sort || SortEnum.ASC);
         keyword && qb.andWhere('(product.name LIKE :keyword OR product.description LIKE :keyword)', { keyword: `%${keyword}%` })
-        qb.loadRelationCountAndMap('product.variantCount', 'product.variant');
 
         const allProduct: Pagination<Product, IPaginationMeta> = await paginate<Product>(qb, option);
 

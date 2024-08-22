@@ -4,8 +4,8 @@ import { AppService } from './app.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { typeOrmConfig } from './config/typeorm.config';
 import { ProductModule } from './modules/product/product.module';
+import { typeOrmConfig } from './config/typeorm.config';
 
 @Module({
   imports: [
